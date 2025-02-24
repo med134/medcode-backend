@@ -17,7 +17,7 @@
     },
     "description": {
       "type": "text",
-      "maxLength": 80
+      "maxLength": 400
     },
     "slug": {
       "type": "uid",
@@ -49,14 +49,15 @@
       "type": "string"
     },
     "userImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "userEmail": {
       "type": "string"
