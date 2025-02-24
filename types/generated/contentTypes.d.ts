@@ -381,7 +381,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     category: Schema.Attribute.String;
     content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
@@ -407,6 +406,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     userEmail: Schema.Attribute.String;
     userImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    username: Schema.Attribute.String;
   };
 }
 
@@ -422,7 +422,6 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
