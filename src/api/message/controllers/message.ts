@@ -1,7 +1,23 @@
-/**
- * message controller
- */
+import { factories } from "@strapi/strapi";
 
-import { factories } from '@strapi/strapi'
+export default factories.createCoreController(
+  "api::message.message",
+  ({ strapi }) => ({
+    async findOne(ctx) {
+      const { id } = ctx.params;
 
-export default factories.createCoreController('api::message.message');
+      const entity = await strapi.db.query("api::message.message").findOne({
+        where: { articleId: id },
+        populate: ["imageUser"],
+      });
+
+      if (!entity) {
+        return ctx.notFound("comment not found");
+      }
+
+      const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
+
+      return this.transformResponse(sanitizedEntity);
+    },
+  })
+);
